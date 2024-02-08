@@ -57,7 +57,10 @@ void printCarPointer(Car* ptrCar)
     //using the * on a pointer shows the value of what is at the address which is a Car type
     printCar(*ptrCar);
 }
-
+void addMileage(Car* ptrCar, int milestoadd)
+{
+    ptrCar->mMileage += milestoadd;
+}
 
 
 int main()
