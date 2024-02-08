@@ -32,7 +32,31 @@ void repaintCar(Car* ptrCar, EnumColorDefinition newcolor)
 {
     ptrCar->mColor = newcolor;
 }
-
+void printCar(Car c)
+{
+    std::cout << c.mYear << " ";
+    switch (c.mColor)
+    {
+    case 1:
+        std::cout << "Red "; break;
+    case 2:
+        std::cout << "Blue "; break;
+    case 3:
+        std::cout << "Green "; break;
+    case 4:
+        std::cout << "Yellow "; break;
+    case 5:
+        std::cout << "Black "; break;
+    case 6:
+        std::cout << "White "; break;
+    }
+    std::cout << c.mMake << " " << c.mModel << " with " << c.mMileage << " miles" << std::endl;
+}
+void printCarPointer(Car* ptrCar)
+{
+    //using the * on a pointer shows the value of what is at the address which is a Car type
+    printCar(*ptrCar);
+}
 
 
 
@@ -87,24 +111,9 @@ int main()
         std::cin.ignore(32,'\n');
     }
 
-    for (Car& car : carArray)
+    for (int i = 0; i<3;i++)
     {
-        std::cout << car.mYear << " ";
-        switch (car.mColor)
-        {case 1:
-            std::cout << "Red "; break;
-        case 2:
-            std::cout << "Blue "; break;
-        case 3:
-            std::cout << "Green "; break;
-        case 4:
-            std::cout << "Yellow "; break;
-        case 5:
-            std::cout << "Black "; break;
-        case 6:
-            std::cout << "White "; break;
-        }
-       std::cout << car.mMake << " " << car.mModel << " with " << car.mMileage<<" miles" << std::endl;
+        printCar(carArray[i]);
     }
 }
 
