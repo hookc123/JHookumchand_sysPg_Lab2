@@ -18,6 +18,24 @@ enum EnumColorDefinition {
     Black,
     White
 };
+struct Car
+{
+    //fields
+    char mMake[32];
+    char mModel[32];
+    int mYear;
+    int mMileage;
+    EnumColorDefinition mColor;
+
+};
+void repaintCar(Car* ptrCar, EnumColorDefinition newcolor)
+{
+    ptrCar->mColor = newcolor;
+}
+
+
+
+
 int main()
 {
     std::cout << "--------------Program 1--------------" << std::endl;
@@ -44,16 +62,7 @@ int main()
     }
 
     std::cout << "--------------Program 3--------------" << std::endl;
-    struct Car
-    {
-        //fields
-        char mMake[32];
-        char mModel[32];
-        int mYear;
-        int mMileage;
-        EnumColorDefinition mColor;
-
-    };
+    
     Car carArray[3];
     for (int i = 0; i < 3;i++) {
         std::cout << "Car " << i + 1 << std::endl;
@@ -74,10 +83,28 @@ int main()
         int colorInput;
         std::cin>>colorInput;
         carArray[i].mColor = EnumColorDefinition(colorInput);
+        // need to clear the input buffer having trouble getting new user input
+        std::cin.ignore(32,'\n');
     }
+
     for (Car& car : carArray)
     {
-        std::cout << car.mYear << car.mColor << car.mMake << car.mModel << " with " << car.mMileage << std::endl;
+        std::cout << car.mYear << " ";
+        switch (car.mColor)
+        {case 1:
+            std::cout << "Red "; break;
+        case 2:
+            std::cout << "Blue "; break;
+        case 3:
+            std::cout << "Green "; break;
+        case 4:
+            std::cout << "Yellow "; break;
+        case 5:
+            std::cout << "Black "; break;
+        case 6:
+            std::cout << "White "; break;
+        }
+       std::cout << car.mMake << " " << car.mModel << " with " << car.mMileage<<" miles" << std::endl;
     }
 }
 
