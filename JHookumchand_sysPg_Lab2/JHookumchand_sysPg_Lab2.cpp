@@ -90,7 +90,7 @@ int main()
 
     std::cout << "--------------Program 3--------------" << std::endl;
     
-    Car carArray[3];
+    Car carArray[3]{};
     for (int i = 0; i < 3;i++) {
         std::cout << "Car " << i + 1 << std::endl;
 
