@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-//#include "Car.h"
+
 
 
 
@@ -54,12 +54,12 @@ void printCar(Car c)
 }
 void printCarPointer(Car* ptrCar)
 {
-    //using the * on a pointer shows the value of what is at the address which is a Car type
+    //using the * on a pointer shows the value of what is at the address which is a Car type aka derefearence
     printCar(*ptrCar);
 }
-void addMileage(Car* ptrCar, int milestoadd)
+void addMileage(Car* ptrCar, int milesToAdd)
 {
-    ptrCar->mMileage += milestoadd;
+    ptrCar->mMileage += milesToAdd;
 }
 
 
@@ -111,13 +111,79 @@ int main()
         std::cin>>colorInput;
         carArray[i].mColor = EnumColorDefinition(colorInput);
         // need to clear the input buffer having trouble getting new user input
-        std::cin.ignore(32,'\n');
+        std::cin.clear();
+        std::cin.ignore(INT_MAX,'\n');
     }
 
     for (int i = 0; i<3;i++)
     {
+        std::cout << "Car " << i + 1 << " ";
         printCar(carArray[i]);
     }
+    int choice;
+    std::cout << "Do you wish to repaint any car?\n" << "1) Yes\n2) No"<<std::endl;
+    std::cin>> choice;
+    if (choice == 1)
+    {
+        std::cout << "Which car do you wish to repaint?" << std::endl;
+        for (int i = 0; i < 3; i++)
+        {
+            std::cout<< i + 1<< ") ";
+            printCar(carArray[i]);
+        }
+        std::cin >> choice;
+        std::cout << "What is the Car color?\n1) Red\n2) Blue\n3) Green\n4) Yellow\n5) Black\n6) White" << std::endl;
+        int colorInput;
+        std::cin >> colorInput;
+        if (choice == 1)
+        {
+            repaintCar(&carArray[0], EnumColorDefinition(colorInput));
+        }
+        if (choice == 2)
+        {
+            repaintCar(&carArray[1], EnumColorDefinition(colorInput));
+        }
+        if (choice == 3)
+        {
+            repaintCar(&carArray[2], EnumColorDefinition(colorInput));
+        }
+        printCar(carArray[choice-1]);
+        std::cout << std::endl;
+    }
+  
+    
+    std::cout << "Do you wish add milage to any car?\n" << "1) Yes\n2) No" << std::endl;
+    std::cin >> choice;
+    std::cout << std::endl;
+    if (choice == 1)
+    {
+        std::cout << "Which car do you wish to add milage to?" << std::endl;
+        for (int i = 0; i < 3; i++)
+        {
+            std::cout << i + 1 << ") ";
+            printCar(carArray[i]);
+        }
+        std::cin >> choice;
+        std::cout << "How much do you wish to add" << std::endl;
+        int addMilage;
+        std::cin >> addMilage;
+        if (choice == 1)
+        {
+            addMileage(&carArray[0], addMilage);
+        }
+        if (choice == 2)
+        {
+            addMileage(&carArray[1], addMilage);
+        }
+        if (choice == 3)
+        {
+            addMileage(&carArray[2], addMilage);
+        }
+        printCar(carArray[choice-1]);
+
+    }
+  
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
